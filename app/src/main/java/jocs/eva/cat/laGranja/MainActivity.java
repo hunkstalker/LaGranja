@@ -7,7 +7,8 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentManager;
+
+import java.util.Random;
 
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
@@ -23,10 +24,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         findViewById(R.id.imageView4).setOnClickListener(this);
         findViewById(R.id.imageView5).setOnClickListener(this);
         findViewById(R.id.imageView6).setOnClickListener(this);
+        findViewById(R.id.id_ryu).setOnClickListener(this);
+        findViewById(R.id.id_triforce).setOnClickListener(this);
+        findViewById(R.id.id_ring).setOnClickListener(this);
 
         //TODO: Exercici 1: Afegeix 3 imatges més amb 3 sons i diferents animacions
         // per ampliar l'exercici.
-
 
 
     }
@@ -36,10 +39,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Relacionem l'animació amb la imatge clicada
          */
         Animation animacio = AnimationUtils.loadAnimation(this, R.anim.mover);
-        view.startAnimation(animacio);
 
         //TODO: Exercici 2: Modifica les animacions, crea 2 o 3 fitxers d'animacions
         // i fes que apareguin de forma aleatòria cada cop que es clica un animal.
+
+        Animation anim1 = AnimationUtils.loadAnimation(this, R.anim.anim1);
+        Animation anim2 = AnimationUtils.loadAnimation(this, R.anim.anim2);
+
+        final int randomAnim = new Random().nextInt(3);
+
+        switch (randomAnim){
+            case 0: view.startAnimation(animacio); break;
+            case 1: view.startAnimation(anim1); break;
+            case 2: view.startAnimation(anim2); break;
+        }
 
         /*Reproduim el so
          */
@@ -68,6 +81,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.imageView6:
                 so = MediaPlayer.create(this, R.raw.vaca);
+                break;
+            case R.id.id_ryu:
+                so = MediaPlayer.create(this, R.raw.ryu);
+                break;
+            case R.id.id_triforce:
+                so = MediaPlayer.create(this, R.raw.secret);
+                break;
+            case R.id.id_ring:
+                so = MediaPlayer.create(this, R.raw.ring);
                 break;
         }
 
